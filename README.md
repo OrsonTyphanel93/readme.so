@@ -16,6 +16,8 @@ JULIA_PACKAGES_IF_GPU="CUDA" # or CuArrays for older Julia versions
 JULIA_NUM_THREADS=2
 #---------------------------------------------------#
 
+
+
 if [ -n "$COLAB_GPU" ] && [ -z `which julia` ]; then
   # Install Julia
   JULIA_VER=`cut -d '.' -f -2 <<< "$JULIA_VERSION"`
@@ -25,6 +27,8 @@ if [ -n "$COLAB_GPU" ] && [ -z `which julia` ]; then
   wget -nv $URL -O /tmp/julia.tar.gz # -nv means "not verbose"
   tar -x -f /tmp/julia.tar.gz -C /usr/local --strip-components 1
   rm /tmp/julia.tar.gz
+
+
 
   # Install Packages
   if [ "$COLAB_GPU" = "1" ]; then
@@ -49,13 +53,20 @@ if [ -n "$COLAB_GPU" ] && [ -z `which julia` ]; then
   echo "jump to the 'Checking the Installation' section."
 fi
 
+
+
  # Checking the Installation
 
  versioninfo()
 
+
+
  using BenchmarkTools
 
 M = rand(2^11, 2^11)
+
+
+
 
 @btime $M * $M;
 
